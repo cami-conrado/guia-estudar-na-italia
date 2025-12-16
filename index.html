@@ -163,7 +163,7 @@
             <div class="form-side">
                 <h1>Seu Guia Gratuito para Estudar na Itália!</h1>
 
-                <form id="guideForm" method="POST" action="https://docs.google.com/forms/d/e/1FAIpQLSeJ-ws4aNqMr3vIEGq_Nwun9ou-0ag6dvionlkXdpC0cdhX4w/formResponse" target="_blank">
+                <form id="guideForm" method="POST" action="https://docs.google.com/forms/d/e/1FAIpQLSeJ-ws4aNqMr3vIEGq_Nwun9ou-0ag6dvionlkXdpC0cdhX4w/formResponse">
 
                     <label for="name">Nome</label>
                     <input type="text" id="name" name="entry.545242551" required>
@@ -179,5 +179,39 @@
             </div>
         </div>
     </div>
+    <script>
+        const form = document.getElementById('guideForm');
+
+        form.addEventListener('submit', function(event) {
+            // 1. Previne o comportamento padrão do formulário (que enviaria para a página do Google Forms)
+            event.preventDefault();
+
+            // 2. Coleta os dados do formulário
+            const formData = new FormData(form);
+            
+            // 3. Obtém o URL de ação do Google Forms
+            const actionUrl = form.getAttribute('action');
+
+            // 4. Envia os dados para o Google Forms em segundo plano (usando fetch)
+            fetch(actionUrl, {
+                method: 'POST',
+                body: formData,
+                mode: 'no-cors' // Necessário para evitar erros de CORS ao enviar para o Google Forms
+            })
+            .then(response => {
+                // O Google Forms sempre retorna "no-cors", então a resposta será opaca.
+                // Não podemos verificar se foi bem-sucedido, mas presumimos que sim e redirecionamos.
+                
+                // 5. Redireciona para a sua página de confirmação
+                window.location.href = 'confirmacao.html';
+            })
+            .catch(error => {
+                // Em caso de erro de rede, ainda redirecionamos para a página de confirmação
+                // O erro aqui geralmente significa que o browser bloqueou algo, mas o formulário geralmente foi enviado
+                console.error('Erro ao enviar o formulário:', error);
+                window.location.href = 'confirmacao.html'; 
+            });
+        });
+    </script>
 </body>
 </html>
