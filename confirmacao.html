@@ -40,20 +40,21 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
             overflow: hidden;
             width: 100%;
-            padding: 40px; /* Adicionado padding para o conteúdo interno */
+            padding: 40px; 
             box-sizing: border-box;
         }
 
-        /* Estilos da Confirmação */
+        /* Estilos da Confirmação (Lado Esquerdo no Desktop) */
         .confirmation-content {
             flex: 1;
             padding: 20px 40px;
+            box-sizing: border-box; /* Garante que o padding não estoure a largura */
         }
 
         .confirmation-content h1 {
             font-family: 'Playfair Display', serif;
             font-size: 2.2em;
-            color: var(--color-accent-green); /* Título em verde, como na imagem */
+            color: var(--color-accent-green); 
             margin-top: 0;
             margin-bottom: 10px;
         }
@@ -65,14 +66,15 @@
             margin-bottom: 20px;
         }
         
-        /* Estilos do PDF Viewer */
+        /* Estilos do PDF Viewer (Lado Direito no Desktop) */
         .pdf-viewer-container {
-            flex: 1.5; /* Dando mais espaço para o visualizador de PDF no desktop */
-            min-height: 600px; /* Altura mínima para o iframe */
-            background-color: #e0e0e0; /* Fundo cinza como no mock-up */
+            flex: 1.5; 
+            min-height: 600px; 
+            background-color: #e0e0e0; 
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            padding: 0; /* Removendo padding desnecessário */
         }
 
         #pdf-viewer {
@@ -85,8 +87,8 @@
         /* Estilo do link direto */
         .direct-link-container {
             margin-top: 15px;
-            text-align: center;
-            padding: 10px;
+            /* A remoção do text-align: center daqui permite que ele se ajuste no desktop */
+            padding: 10px 0;
         }
         
         .direct-link-container a {
@@ -95,32 +97,58 @@
             text-decoration: underline;
             font-size: 1.1em;
             transition: color 0.3s;
+            /* Nova regra para o link se quebrar em várias linhas no mobile */
+            word-break: break-all;
+            display: inline-block; /* Permite margem/padding se necessário */
         }
         
         .direct-link-container a:hover {
             color: var(--color-bg-dark);
         }
 
-        /* Mobile Responsiveness */
+        /* 7. Mobile Responsiveness */
         @media (max-width: 768px) {
+            
+            body {
+                padding: 10px; /* Reduz o padding geral no mobile */
+            }
+
             .content-box {
                 flex-direction: column;
-                padding: 30px;
+                padding: 20px 10px; /* Ajusta o padding do conteúdo principal */
+                border-radius: 15px;
             }
+
             .confirmation-content {
                 order: 1; /* Texto em cima */
-                padding: 0;
+                padding: 10px; /* Ajusta o padding interno do texto */
+                text-align: center; /* Centraliza o texto no mobile */
             }
-            .pdf-viewer-container {
-                order: 2; /* PDF em baixo */
-                margin-top: 30px;
-                min-height: 400px; /* Ajuste para mobile */
-            }
+
             .confirmation-content h1 {
-                text-align: center;
+                 font-size: 1.8em; /* Título menor */
             }
             .confirmation-content p {
-                text-align: center;
+                 font-size: 1em; /* Texto menor */
+            }
+
+            /* Correção do Link Direto para Mobile */
+            .direct-link-container {
+                text-align: center; /* Centraliza o link no mobile */
+            }
+            .direct-link-container a {
+                /* Força o link a ocupar menos espaço, se necessário, ou a se quebrar */
+                word-break: break-word; /* Permite a quebra de palavras longas (como o URL) */
+                font-size: 0.9em;
+            }
+
+            /* Correção do PDF Viewer para Mobile */
+            .pdf-viewer-container {
+                order: 2; /* PDF em baixo */
+                margin-top: 20px;
+                min-height: 300px; /* Altura menor no mobile */
+                width: 100%; /* Garante 100% da largura da box */
+                padding: 0;
             }
         }
     </style>
