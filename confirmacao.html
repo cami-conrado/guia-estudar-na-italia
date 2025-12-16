@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sucesso! Seu Guia Está Aqui</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Variáveis de cor (Mantenha as mesmas da página principal) */
+        :root {
+            --color-bg-dark: #76313D;
+            --color-content-light: #F3EDE2;
+            --color-text-dark: #353535;
+            --color-accent-green: #4A6652;
+            --color-button: #76313D;
+            --color-link: #76313D; /* Nova cor para o link */
+        }
+
+        /* 1. Global Styles and Body */
+        body {
+            margin: 0;
+            font-family: 'Lato', sans-serif;
+            background-color: var(--color-bg-dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* 2. Main Content Box */
+        .content-box {
+            display: flex;
+            max-width: 1000px;
+            background-color: var(--color-content-light);
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+            width: 100%;
+            padding: 40px; /* Adicionado padding para o conteúdo interno */
+            box-sizing: border-box;
+        }
+
+        /* Estilos da Confirmação */
+        .confirmation-content {
+            flex: 1;
+            padding: 20px 40px;
+        }
+
+        .confirmation-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2em;
+            color: var(--color-accent-green); /* Título em verde, como na imagem */
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .confirmation-content p {
+            font-size: 1.1em;
+            line-height: 1.5;
+            color: var(--color-text-dark);
+            margin-bottom: 20px;
+        }
+        
+        /* Estilos do PDF Viewer */
+        .pdf-viewer-container {
+            flex: 1.5; /* Dando mais espaço para o visualizador de PDF no desktop */
+            min-height: 600px; /* Altura mínima para o iframe */
+            background-color: #e0e0e0; /* Fundo cinza como no mock-up */
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        #pdf-viewer {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+        
+        /* Estilo do link direto */
+        .direct-link-container {
+            margin-top: 15px;
+            text-align: center;
+            padding: 10px;
+        }
+        
+        .direct-link-container a {
+            color: var(--color-link);
+            font-weight: 700;
+            text-decoration: underline;
+            font-size: 1.1em;
+            transition: color 0.3s;
+        }
+        
+        .direct-link-container a:hover {
+            color: var(--color-bg-dark);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .content-box {
+                flex-direction: column;
+                padding: 30px;
+            }
+            .confirmation-content {
+                order: 1; /* Texto em cima */
+                padding: 0;
+            }
+            .pdf-viewer-container {
+                order: 2; /* PDF em baixo */
+                margin-top: 30px;
+                min-height: 400px; /* Ajuste para mobile */
+            }
+            .confirmation-content h1 {
+                text-align: center;
+            }
+            .confirmation-content p {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="content-box">
+            
+            <div class="confirmation-content">
+                <h1>Sucesso! Seu Guia Está Aqui</h1>
+                <p>
+                    Caso não consiga visualizar, você pode acessar diretamente pelo link [adicionar link google drive]
+                </p>
+                <div class="direct-link-container">
+                    <a href="https://drive.google.com/file/d/1QvCo-LK6OmKVwunIT44Tmf6MKAZplobv/view?usp=sharing" target="_blank">
+                        Clique Aqui para Acessar o Guia Diretamente
+                    </a>
+                </div>
+            </div>
+
+            <div class="pdf-viewer-container">
+                <iframe 
+                    id="pdf-viewer"
+                    src="https://docs.google.com/gview?url=https://drive.google.com/uc?id=1QvCo-LK6OmKVwunIT44Tmf6MKAZplobv&embedded=true" 
+                    frameborder="0"
+                ></iframe>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
